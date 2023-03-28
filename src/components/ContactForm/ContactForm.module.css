@@ -1,0 +1,24 @@
+.form{
+    display: flex;
+    flex-direction: column;
+    gap:10px;
+    /* align-items: center; */
+    width: 350px;
+    border: 1px solid black;
+    margin-bottom: 25px;
+    padding: 10px;
+}
+.label{
+    display: flex;
+}
+.btn{
+    background-color: blueviolet;
+    width: 50px;
+    align-self: center;
+    border: none;
+    color:aliceblue;
+    cursor: pointer;
+}
+.btn:hover{
+    background-color:rgb(160, 59, 255)
+}
