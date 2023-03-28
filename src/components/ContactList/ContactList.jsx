@@ -13,6 +13,7 @@ export const ContactList =({contacts,clickHandler})=>{
         </ul>
     )
 }
+// toFix
 ContactList.propTypes = {
     contacts: PropTypes.array,
     clickHandler: PropTypes.func
