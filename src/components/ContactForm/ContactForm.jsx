@@ -1,34 +1,34 @@
 import css from './ContactForm.module.css'
-import { Component } from "react";
+import { useState } from "react";
 import PropTypes from 'prop-types';
 
-export class ContactForm extends Component {
-  state = {
-  name: '',
-  number:'', }
+export const ContactForm =({addContact})=> {
+  
+  const [name, setName] = useState('');
+  const [number, setNumber] = useState('');
 
-  handlerSumbit = e =>{
+
+ const handlerSumbit = e =>{
     e.preventDefault();
-    this.setState({
-      name: e.target.name.value,
-      number: e.target.number.value
-    })
+    setName(e.target.name.value);
+    setNumber(e.target.number.value)
     
-    this.props.addContact({...this.state});
-    this.setState({
-      name:'',
-      number:'',
-    })
+    addContact({name,number});
+    setNumber('')
+    setName('')
   }
-  handleChange = evt => {
-    const { name, value } = evt.target;
-    this.setState({ [name]: value });
+ const handleChange = evt => {
+    if(evt.target.name==='name'){
+      setName(evt.target.value)
+     }
+    else if(evt.target.name==='number'){
+      setNumber(evt.target.value)
+    }
   };
 
-  render(){
-    const { name, number } = this.state;
+  
 return(
-    <form className={css.form} onSubmit={this.handlerSumbit}>
+    <form className={css.form} onSubmit={handlerSumbit}>
     
     <label className={css.label} for="name">
         Name
@@ -36,7 +36,7 @@ return(
     <input
   type="text"
   id="name"
-  onChange={this.handleChange}
+  onChange={handleChange}
   name="name"
   value={name}
   pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
@@ -47,7 +47,7 @@ return(
   Phone number
   </label>
 <input
-  onChange={this.handleChange}
+  onChange={handleChange}
   type="tel"
   id="number"
   name="number"
@@ -58,7 +58,7 @@ return(
 />
   <button type="submit" className={css.btn}>ADD</button>
   </form>
-)}
+)
 
 }
 ContactForm.propTypes = {
